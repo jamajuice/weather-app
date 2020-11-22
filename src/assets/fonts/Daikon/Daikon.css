@@ -1,0 +1,30 @@
+/**
+ * @license
+ * MyFonts Webfont Build ID 3978051, 2020-11-21T14:32:02-0500
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Daikon-ExtraLight by Pepper Type
+ * URL: https://www.myfonts.com/fonts/pepper-type/daikon/extra-light/
+ * Copyright: (c) Oleh Lishchuk, 2020
+ * 
+ * 
+ * 
+ * © 2020 MyFonts Inc
+*/
+
+  
+@font-face {
+  font-family: 'Daikon-ExtraLight';
+  src: url('webFonts/Daikon-ExtraLight/font.woff2') format('woff2'), url('webFonts/Daikon-ExtraLight/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Daikon-Bold';
+  src: url('webFonts/Daikon-Bold/font.woff') format('woff');
+}
+

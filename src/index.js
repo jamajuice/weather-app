@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import WeatherApp from './WeatherApp';
+import './assets/fonts/Daikon/Daikon.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <WeatherApp />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
