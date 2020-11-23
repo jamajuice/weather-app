@@ -5,6 +5,7 @@ const WButton = ({ city, country, selected, change }) => {
         <button 
             type="button" 
             onClick={() => change(city, country)} 
+            disabled={selected.city === city}
             className={`btn${selected.city === city ? ' selected': ''}`}
         >
             {city}

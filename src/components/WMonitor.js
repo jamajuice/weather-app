@@ -11,39 +11,39 @@ const WMonitor = ({ location }) => {
             return {
                 'day': moment().isSame(moment(day.datetime), 'day')  ? 'Today' : moment(day.datetime).format('ddd'),
                 'icon_path': `https://www.weatherbit.io/static/img/icons/${day.weather.icon}.png`,
-                'temp': Math.round(day.high_temp)
+                'temp': Math.round(day.high_temp),
+                'temp_text': day.weather.description
             }
         });
     };
 
     const [weatherData, setWeatherData] = React.useState([]);
     const [apiError, setApiError] = React.useState("");
-    const [isLoading, setIsLoading] = React.useState(false);
 
     React.useEffect(() => {
-        const loadingIndicatorTimeout = setTimeout(() => setIsLoading(true), 500);
+        const requestTimeout = setTimeout(() => {}, 2000);
         const getLocationWeather = async () => {
             const result = await getWeather(location);
-            clearTimeout(loadingIndicatorTimeout);
-            setIsLoading(false);
+            clearTimeout(requestTimeout);
             setWeatherData(result.success ? prepareData(result.data) : []);
             setApiError(result.success ? "" : result.error);
         };
-        getLocationWeather();
-        return () => clearTimeout(loadingIndicatorTimeout);
+        setWeatherData([]);
+        setTimeout(() => { getLocationWeather(); }, 1000);
+        return () => clearTimeout(requestTimeout);
     }, [location]);
 
     return (
         <div className="monitor">
             {apiError ? null : <div className="error">{apiError}</div>}
             <div className="header">
-                {isLoading ? null : <WItem type="lg" data={weatherData[0]} />}
+                <WItem type="lg" data={weatherData[0]} />
             </div>
             <div className="footer">
-                {isLoading ? null : <WItem type="sm" data={weatherData[1]} />}
-                {isLoading ? null : <WItem type="sm" data={weatherData[2]} />}
-                {isLoading ? null : <WItem type="sm" data={weatherData[3]} />}
-                {isLoading ? null : <WItem type="sm" data={weatherData[4]} />}
+                <WItem type="sm" data={weatherData[1]} />
+                <WItem type="sm" data={weatherData[2]} />
+                <WItem type="sm" data={weatherData[3]} />
+                <WItem type="sm" data={weatherData[4]} />
             </div>
         </div>
     );

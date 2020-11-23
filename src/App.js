@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import './App.less';
 import WMenu from './components/WMenu';
 import WMonitor from './components/WMonitor';
@@ -14,7 +14,7 @@ function readFromLocalStorage() {
 } */
 
 const App = () => {
-    const [location, setLocation] = React.useState({ city: "Ottawa", country: "CA" });
+    const [location, setLocation] = useState({ city: "Ottawa", country: "CA" });
 
     const changeLocation = (city, country) => {
         setLocation({ city, country });

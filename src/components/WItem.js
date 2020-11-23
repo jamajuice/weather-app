@@ -1,12 +1,39 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import Skeleton from 'react-loading-skeleton';
 
-const WItem = (props) => {
+
+const WItem = ({ type, data }) => {
+    const hasData =  Object.keys(data).length !== 0;
+
     return (
         <> 
-            <div className={`item ${props.type}`}>
-                <div className="day">{props.data ? props.data.day : null}</div>
-                <div className="img"><img src={props.data ? props.data.icon_path : null} alt="Weather Icon" /></div>
-                <div className="temp">{props.data ? props.data.temp : null}</div>
+            <div className={`item ${type}`}>
+                <div className="day">{hasData ? data.day : <Skeleton width="100%" height="100%" />}</div>
+                <div className="info">
+                    <div className="icon-container">
+                        <div className="img">
+                            {hasData ? (
+                                <img 
+                                    src={hasData ? data.icon_path : null} 
+                                    alt="Weather Icon" 
+                                />
+                            ) : ( 
+                                <Skeleton circle height={type === "lg" ? 100 : 50} width={type === "lg" ? 100 : 50} />
+                            )}
+                        </div>
+                    </div>
+                    <div className="temp-container">
+                        <div className={`temp${ hasData ? '' : ' loading'}`}>
+                            {hasData ? data.temp : <Skeleton width="100%" height="100%" />}
+                            {hasData ? ( <span>&#176;</span> ) : null}
+                        </div>
+                        {data && data.temp_text && type === "lg" ? ( 
+                            <div className="temp-text">{data.temp_text}</div> 
+                        ) : (
+                            null
+                        )}
+                    </div>
+                </div>
             </div>
         </>
     );
@@ -18,6 +45,7 @@ WItem.propTypes = {
         day: PropTypes.string,
         icon_path: PropTypes.string,
         temp: PropTypes.number,
+        temp_text: PropTypes.string,
     })
 };
 
