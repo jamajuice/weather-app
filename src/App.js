@@ -3,26 +3,25 @@ import './App.less';
 import WMenu from './components/WMenu';
 import WMonitor from './components/WMonitor';
 
-/* const LOCAL_STORAGE_KEY = "location";
+const LOCAL_STORAGE_KEY = "location";
+
 function saveToLocalStorage(location) {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(location));
 }
 
 function readFromLocalStorage() {
     const storedLocation = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return storedLocation ? JSON.parse(storedLocation) : [];
-} */
+    return storedLocation ? JSON.parse(storedLocation) : { city: "Ottawa", country: "CA" };
+}
 
 const App = () => {
-    const [location, setLocation] = useState({ city: "Ottawa", country: "CA" });
+    const [location, setLocation] = useState(readFromLocalStorage());
 
     const changeLocation = (city, country) => {
-        setLocation({ city, country });
+        const newLocation = { city, country };
+        setLocation(newLocation);
+        saveToLocalStorage(newLocation);
     }
-    // component mounts
-    // get location from storage
-    // if none send default or else send clicked location 
-
 
     return (
         <div className="weather-app">

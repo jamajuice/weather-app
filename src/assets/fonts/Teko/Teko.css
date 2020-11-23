@@ -2,13 +2,3 @@
     font-family: 'Teko-Regular';
     src: url('webFonts/Teko-Regular/font.woff') format('woff');
 }
-
-@font-face {
-    font-family: 'Teko-Bold';
-    src: url('webFonts/Teko-Bold/font.woff') format('woff');
-  }
-  
-@font-face {
-    font-family: 'Teko-SemiBold';
-    src: url('webFonts/Teko-SemiBold/font.woff') format('woff');
-}

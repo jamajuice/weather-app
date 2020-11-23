@@ -18,12 +18,12 @@ const WItem = ({ type, data }) => {
                                     alt="Weather Icon" 
                                 />
                             ) : ( 
-                                <Skeleton circle height={type === "lg" ? 100 : 50} width={type === "lg" ? 100 : 50} />
+                                <Skeleton circle height={type === "lg" ? 120 : 50} width={type === "lg" ? 120 : 50} />
                             )}
                         </div>
                     </div>
-                    <div className="temp-container">
-                        <div className={`temp${ hasData ? '' : ' loading'}`}>
+                    <div className={`temp-container${ hasData ? '' : ' loading'}`}>
+                        <div className="temp">
                             {hasData ? data.temp : <Skeleton width="100%" height="100%" />}
                             {hasData ? ( <span>&#176;</span> ) : null}
                         </div>

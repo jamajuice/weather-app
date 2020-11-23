@@ -13,16 +13,16 @@
     color: white;
 
     .container{
-        height: 630px;
+        height: 700px;
         width: 60%;
-        max-width: 700px;
+        max-width: 800px;
         min-width: 300px;
         position: relative;
         z-index: 400;
 
         .menu {
             width: 100%;
-            height: 100px;
+            height: 120px;
             margin-bottom: 10px;
             display: flex;
             flex-direction: row;
@@ -34,7 +34,7 @@
                 height: 100%;
                 cursor: pointer;
                 font-family: 'Daikon-ExtraLight';
-                font-size: calc(10px + 2vmin);
+                font-size: calc(14px + 2vmin);
                 color: @primary-text-color;
                 text-transform: uppercase;
                 background-color: @primary;
@@ -82,7 +82,7 @@
             flex-direction: column;
             justify-content: flex-start;
             width: 100%;
-            height: calc(100% - 100px);
+            height: calc(100% - 120px);
             border: 1px solid black;
             border-radius: 15px;
             -webkit-box-shadow: -2px 4px 19px 1px rgba(217,221,224,1);
@@ -139,10 +139,10 @@
                 }
 
                 .day {
-                    font-size: calc(6px + 2vmin);
+                    font-size: calc(10px + 2vmin);
                     height: 25px;
                     width: 50%;
-                    margin-bottom: 15px;
+                    margin-bottom: 35px;
                     text-align: center;
                 }
 
@@ -153,10 +153,9 @@
                     flex-direction: column;
                     justify-content: center;
                     align-items: center;
-                    margin-top: 10px;
 
                     .icon-container {
-                        height: 60%;
+                        height: 70%;
                         margin: 0px 0;
                         justify-content: center;
                         display: flex;
@@ -189,10 +188,12 @@
 
                         .temp {
                             font-family: 'Teko-Regular';
-                            font-size: calc(15px + 2vmin);
+                            font-size: calc(20px + 2vmin);
                             margin-left: 10px;
+                        }
 
-                            &.loading {
+                        &.loading {
+                            .temp {
                                 margin-left: 0;
                                 font-size: calc(7px + 2vmin);
                             }
@@ -214,6 +215,7 @@
                         justify-content: center;
                         align-items: center;
                         width: 80%;
+                        margin-top: 10px;
 
                         .icon-container {
                             width: 50%;
@@ -224,13 +226,24 @@
                                 margin-left: -70px;
 
                                 .react-loading-skeleton {
-                                    margin-left: 20%;
+                                    margin-left: 0;
+                                    margin-top: -30%;
                                 }
 
                                 img {
-                                    width: 125%;
-                                    height: 125%;
-                                    max-height: 125%;
+                                    width: 150%;
+                                    height: 150%;
+                                    max-height: 150%;
+                                    margin-top: -10%;
+                                    margin-left: -10%;
+
+                                    @media (max-width: 576px) {
+                                        width: 125%;
+                                        height: 125%;
+                                        max-height: 125%;
+                                        margin-top: 0;
+                                        margin-left: 0;
+                                    }
                                 }
                             }
                         }
@@ -249,14 +262,25 @@
                             }
 
                             .temp {
-                                font-size: calc(60px + 2vmin);
+                                font-size: calc(70px + 2vmin);
                                 margin-left: 0;
-                                margin-top: -15px;
+                                margin-top: -25px;
+                                height: 120px;
                             }
 
                             .temp-text {
                                 font-size: calc(4px + 2vmin);
                                 margin-top: -25px;
+                            }
+
+                            &.loading {
+                                width: 25%;
+                                margin-left: -10%;
+
+                                .temp {
+                                    margin-top: -50px;
+                                    height: 120px;
+                                }
                             }
                         }
                     }
