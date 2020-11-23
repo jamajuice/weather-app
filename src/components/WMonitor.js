@@ -1,5 +1,7 @@
 import React from 'react';
-import PropTypes from "prop-types";
+import PropTypes from "prop-types";  
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment';
 import WItem from './WItem';
 import getWeather  from '../api/getWeather';
@@ -18,7 +20,6 @@ const WMonitor = ({ location }) => {
     };
 
     const [weatherData, setWeatherData] = React.useState([]);
-    const [apiError, setApiError] = React.useState("");
 
     React.useEffect(() => {
         const requestTimeout = setTimeout(() => {}, 2000);
@@ -26,7 +27,17 @@ const WMonitor = ({ location }) => {
             const result = await getWeather(location);
             clearTimeout(requestTimeout);
             setWeatherData(result.success ? prepareData(result.data) : []);
-            setApiError(result.success ? "" : result.error);
+            if(!result.success) {
+                toast.error(`Error! ${result.error}`, {
+                    position: "top-right",
+                    autoClose: 10000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+            }
         };
         setWeatherData([]);
         setTimeout(() => { getLocationWeather(); }, 1000);
@@ -35,7 +46,7 @@ const WMonitor = ({ location }) => {
 
     return (
         <div className="monitor">
-            {apiError ? null : <div className="error">{apiError}</div>}
+            <ToastContainer />
             <div className="header">
                 <WItem type="lg" data={weatherData[0]} />
             </div>

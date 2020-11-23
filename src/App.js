@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
 import './App.less';
 import WMenu from './components/WMenu';
 import WMonitor from './components/WMonitor';
@@ -11,7 +12,21 @@ function saveToLocalStorage(location) {
 
 function readFromLocalStorage() {
     const storedLocation = localStorage.getItem(LOCAL_STORAGE_KEY);
-    return storedLocation ? JSON.parse(storedLocation) : { city: "Ottawa", country: "CA" };
+    if(storedLocation) {
+        return JSON.parse(storedLocation);
+    }
+    toast("🌞 J's Weather App 🌞", {
+        position: "top-left",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+    });
+    const defaultLocation = { city: "Ottawa", country: "CA" };
+    saveToLocalStorage(defaultLocation)
+    return { city: "Ottawa", country: "CA" };
 }
 
 const App = () => {
@@ -25,6 +40,7 @@ const App = () => {
 
     return (
         <div className="weather-app">
+            <ToastContainer />
             <div className="container">
                 <WMenu selected={location} change={changeLocation} />
                 <WMonitor location={location} />
