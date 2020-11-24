@@ -8,6 +8,8 @@ import getWeather  from '../api/getWeather';
 
 const ForecastMonitor = ({ location }) => {
 
+    const [forecastData, setForecastData] = React.useState([]);
+
     const formatData = (forecast) => {
         return forecast.data.map(day => {
             return {
@@ -18,8 +20,6 @@ const ForecastMonitor = ({ location }) => {
             }
         });
     };
-
-    const [forecastData, setForecastData] = React.useState([]);
 
     React.useEffect(() => {
         const getLocationForecast = async () => {
