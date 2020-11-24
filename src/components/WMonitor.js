@@ -13,7 +13,7 @@ const WMonitor = ({ location }) => {
             return {
                 'day': moment().isSame(moment(day.datetime), 'day')  ? 'Today' : moment(day.datetime).format('ddd'),
                 'icon_path': `https://www.weatherbit.io/static/img/icons/${day.weather.icon}.png`,
-                'temp': Math.round(day.high_temp),
+                'temp': Math.round(day.temp),
                 'temp_text': day.weather.description
             }
         });
@@ -22,10 +22,8 @@ const WMonitor = ({ location }) => {
     const [weatherData, setWeatherData] = React.useState([]);
 
     React.useEffect(() => {
-        const requestTimeout = setTimeout(() => {}, 2000);
         const getLocationWeather = async () => {
             const result = await getWeather(location);
-            clearTimeout(requestTimeout);
             setWeatherData(result.success ? prepareData(result.data) : []);
             if(!result.success) {
                 toast.error(`Error! ${result.error}`, {
@@ -41,7 +39,6 @@ const WMonitor = ({ location }) => {
         };
         setWeatherData([]);
         setTimeout(() => { getLocationWeather(); }, 1000);
-        return () => clearTimeout(requestTimeout);
     }, [location]);
 
     return (

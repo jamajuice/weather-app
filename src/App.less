@@ -1,6 +1,8 @@
 @primary: #eef6fb;
 @primary-hover: #e8f0f4;
 @primary-text-color: #333333;
+@active-menu-color: #5fb0e8;
+@monitor-border-color: #ffffff;
 
 .weather-app {
     background-color: @primary;
@@ -10,7 +12,6 @@
     align-items: flex-start;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    color: white;
 
     .container{
         height: 700px;
@@ -57,7 +58,7 @@
                         opacity: 1;
                     }
                     font-family: 'Daikon-Bold';
-                    color: #5fb0e8;
+                    color: @active-menu-color;
                     cursor: default;
                 }
 
@@ -89,7 +90,7 @@
             -moz-box-shadow: -2px 4px 19px 1px rgba(217,221,224,1);
             box-shadow: -2px 4px 19px 1px rgba(217,221,224,1);
             background-color: @primary;
-            border: 3px solid #fff;
+            border: 3px solid @monitor-border-color;
 
             .header {
                 display: flex;
@@ -132,7 +133,7 @@
                 justify-content: center;
                 align-items: center;
                 color: @primary-text-color;
-                border: 2px solid white;
+                border: 2px solid @monitor-border-color;
 
                 .day, .temp-text {
                     font-family: 'Daikon-ExtraLight'

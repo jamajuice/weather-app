@@ -4,14 +4,13 @@ import './App.less';
 import WMenu from './components/WMenu';
 import WMonitor from './components/WMonitor';
 
-const LOCAL_STORAGE_KEY = "location";
 
 function saveToLocalStorage(location) {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(location));
+    localStorage.setItem("location", JSON.stringify(location));
 }
 
 function readFromLocalStorage() {
-    const storedLocation = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const storedLocation = localStorage.getItem("location");
     if(storedLocation) {
         return JSON.parse(storedLocation);
     }
@@ -25,8 +24,8 @@ function readFromLocalStorage() {
         progress: undefined,
     });
     const defaultLocation = { city: "Ottawa", country: "CA" };
-    saveToLocalStorage(defaultLocation)
-    return { city: "Ottawa", country: "CA" };
+    saveToLocalStorage(defaultLocation);
+    return defaultLocation;
 }
 
 const App = () => {
