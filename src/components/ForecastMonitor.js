@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import moment from 'moment';
-import WItem from './WItem';
+import ForecastDay from './ForecastDay';
 import getWeather  from '../api/getWeather';
 
-const WMonitor = ({ location }) => {
+const ForecastMonitor = ({ location }) => {
 
-    const prepareData = (forecast) => {
+    const formatData = (forecast) => {
         return forecast.data.map(day => {
             return {
                 'day': moment().isSame(moment(day.datetime), 'day')  ? 'Today' : moment(day.datetime).format('ddd'),
@@ -19,12 +19,12 @@ const WMonitor = ({ location }) => {
         });
     };
 
-    const [weatherData, setWeatherData] = React.useState([]);
+    const [forecastData, setForecastData] = React.useState([]);
 
     React.useEffect(() => {
-        const getLocationWeather = async () => {
+        const getLocationForecast = async () => {
             const result = await getWeather(location);
-            setWeatherData(result.success ? prepareData(result.data) : []);
+            setForecastData(result.success ? formatData(result.data) : []);
             if(!result.success) {
                 toast.error(`Error! ${result.error}`, {
                     position: "top-right",
@@ -37,35 +37,35 @@ const WMonitor = ({ location }) => {
                 });
             }
         };
-        setWeatherData([]);
-        setTimeout(() => { getLocationWeather(); }, 1000);
+        setForecastData([]);
+        setTimeout(() => { getLocationForecast(); }, 1000);
     }, [location]);
 
     return (
         <div className="monitor">
             <ToastContainer />
             <div className="header">
-                <WItem type="lg" data={weatherData[0]} />
+                <ForecastDay type="lg" data={forecastData[0]} />
             </div>
             <div className="footer">
-                <WItem type="sm" data={weatherData[1]} />
-                <WItem type="sm" data={weatherData[2]} />
-                <WItem type="sm" data={weatherData[3]} />
-                <WItem type="sm" data={weatherData[4]} />
+                <ForecastDay type="sm" data={forecastData[1]} />
+                <ForecastDay type="sm" data={forecastData[2]} />
+                <ForecastDay type="sm" data={forecastData[3]} />
+                <ForecastDay type="sm" data={forecastData[4]} />
             </div>
         </div>
     );
 }
 
-WMonitor.propTypes = {
+ForecastMonitor.propTypes = {
     location: PropTypes.shape({
         city: PropTypes.string,
         country: PropTypes.string
     })
 };
 
-WMonitor.defaultProps = {
+ForecastMonitor.defaultProps = {
     location: {}
 };
 
-export default WMonitor;
+export default ForecastMonitor;

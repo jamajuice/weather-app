@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const WButton = ({ city, country, selected, change }) => {
+const MenuButton = ({ city, country, selected, change }) => {
     return (
         <button 
             type="button" 
@@ -13,7 +13,7 @@ const WButton = ({ city, country, selected, change }) => {
     );
 }
 
-WButton.propTypes = {
+MenuButton.propTypes = {
     city: PropTypes.string.isRequired,
     country: PropTypes.string.isRequired,
     selected: PropTypes.shape({
@@ -23,4 +23,4 @@ WButton.propTypes = {
     change: PropTypes.func.isRequired
 };
 
-export default WButton;
+export default MenuButton;

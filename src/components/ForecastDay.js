@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import Skeleton from 'react-loading-skeleton';
 
 
-const WItem = ({ type, data }) => {
+const ForecastDay = ({ type, data }) => {
     const hasData =  Object.keys(data).length !== 0;
 
     return (
@@ -33,7 +33,7 @@ const WItem = ({ type, data }) => {
     );
 }
 
-WItem.propTypes = {
+ForecastDay.propTypes = {
     type: PropTypes.string,
     data: PropTypes.shape({
         day: PropTypes.string,
@@ -43,11 +43,11 @@ WItem.propTypes = {
     })
 };
 
-WItem.defaultProps = {
+ForecastDay.defaultProps = {
     type: "",
     data: {}
 };
 
 
 
-export default WItem;
+export default ForecastDay;
